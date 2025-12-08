@@ -1,0 +1,65 @@
+
+## 2. Backend ফাইলস
+
+### backend/index.js
+```javascript
+require('dotenv').config();
+const express = require('express');
+const { Telegraf } = require('telegraf');
+const GoogleSheetsDB = require('./google-sheets/sheets');
+const adminRoutes = require('./admin-panel/routes');
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
+
+// Initialize Google Sheets
+const db = new GoogleSheetsDB();
+
+async function initializeApp() {
+    try {
+        await db.initialize();
+        console.log('✅ Google Sheets initialized');
+        
+        // Initialize Telegram Bot
+        const bot = new Telegraf(process.env.BOT_TOKEN);
+        
+        // Load bot handlers
+        require('./telegram-bot/bot')(bot, db);
+        
+        // Set webhook
+        if (process.env.NODE_ENV === 'production') {
+            await bot.telegram.setWebhook(`${process.env.WEBHOOK_URL}/bot${process.env.BOT_TOKEN}`);
+            app.use(bot.webhookCallback(`/bot${process.env.BOT_TOKEN}`));
+        } else {
+            bot.launch();
+        }
+        
+        // Admin panel routes
+        app.use('/admin', adminRoutes);
+        
+        // Health check
+        app.get('/health', (req, res) => {
+            res.json({ status: 'OK', timestamp: new Date() });
+        });
+        
+        // Start server
+        app.listen(port, () => {
+            console.log(`🚀 Server running on port ${port}`);
+        });
+        
+        // Enable graceful stop
+        process.once('SIGINT', () => bot.stop('SIGINT'));
+        process.once('SIGTERM', () => bot.stop('SIGTERM'));
+        
+    } catch (error) {
+        console.error('❌ Failed to initialize app:', error);
+        process.exit(1);
+    }
+}
+
+initializeApp();
