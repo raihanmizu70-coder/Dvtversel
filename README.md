@@ -1,19 +1,16 @@
-# Digital Vision Trusted Bot
+# Digital Vision Bot
 
-একটি সম্পূর্ণ টেলিগ্রাম বট সিস্টেম যার মাধ্যমে ইউজাররা Micro Job, Code Sell, এবং বিভিন্ন সার্ভিস পাবে।
+টেলিগ্রাম মাইক্রো জব বট - যেখানে ইউজাররা কাজ করে টাকা উপার্জন করতে পারবে।
 
-## ফিচারস
-- ✅ Micro Job System (CPA লিড)
-- ✅ GST/F/Insite Code Sell
-- ✅ Diamond Top-Up
-- ✅ Referral System
-- ✅ Wallet & Withdraw System
-- ✅ Admin Panel
-- ✅ Google Sheets ডাটাবেস
+## ফিচারসমূহ
+- মাইক্রো জব সিস্টেম
+- রেফারেল সিস্টেম
+- ওয়ালেট ও উইথড্রও
+- এডমিন কন্ট্রোল প্যানেল
+- গুগল শিটস ইন্টিগ্রেশন
 
 ## ইনস্টলেশন
+*বিস্তারিত ইনস্ট্রাকশন পরে যোগ করা হবে*
 
-1. **রিপোজিটরি ক্লোন করুন**
-```bash
-git clone https://github.com/yourusername/digital-vision-bot.git
-cd digital-vision-bot
+## কনফিগারেশন
+`.env` ফাইলে নিম্নলিখিত ভেরিয়েবল সেট করুন:
