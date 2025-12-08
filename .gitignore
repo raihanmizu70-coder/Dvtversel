@@ -1,0 +1,23 @@
+# Bot Configuration
+BOT_TOKEN=your_telegram_bot_token_here
+BOT_USERNAME=@digitalvision_1235bot
+ADMIN_IDS=123456789,987654321
+
+# Google Sheets Configuration
+GOOGLE_SHEET_ID=your_google_sheet_id_here
+GOOGLE_SERVICE_ACCOUNT_EMAIL=your-service-account@project.iam.gserviceaccount.com
+GOOGLE_PRIVATE_KEY=-----BEGIN PRIVATE KEY-----\nYOUR_PRIVATE_KEY\n-----END PRIVATE KEY-----
+
+# App Configuration
+APP_URL=https://your-app.vercel.app
+WEBHOOK_URL=https://your-domain.com
+
+# Channel Configuration
+CHANNEL_1=@income460tu
+CHANNEL_2=@dvt1236
+SUPPORT_CHANNEL=@digitalvision_support
+
+# Payment Configuration
+WITHDRAW_MINIMUM=100
+REFERRAL_BONUS=5
+FIRST_WITHDRAW_CHARGE=10
