@@ -1,0 +1,27 @@
+{
+  "name": "digital-vision-bot",
+  "version": "1.0.0",
+  "description": "Digital Vision Trusted Telegram Bot",
+  "main": "backend/index.js",
+  "scripts": {
+    "start": "node backend/index.js",
+    "dev": "nodemon backend/index.js",
+    "deploy": "git push origin main",
+    "setup": "npm install && cp .env.example .env"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "telegraf": "^4.15.3",
+    "google-spreadsheet": "^3.3.0",
+    "dotenv": "^16.0.3",
+    "axios": "^1.3.4",
+    "jsonwebtoken": "^9.0.0",
+    "bcryptjs": "^2.4.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
