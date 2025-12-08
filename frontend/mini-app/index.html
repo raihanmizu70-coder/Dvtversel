@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Digital Vision Trusted</title>
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Components -->
+    <script src="components/header.js" defer></script>
+    <script src="components/categories.js" defer></script>
+    <script src="components/navigation.js" defer></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-spinner">
+                <div class="spinner-circle"></div>
+                <div class="spinner-circle"></div>
+                <div class="spinner-circle"></div>
+            </div>
+            <div class="loading-text">
+                <h2>Digital Vision Trusted</h2>
+                <p>লোড হচ্ছে...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Container -->
+    <div id="headerContainer"></div>
+
+    <!-- Main Content -->
+    <main class="app-main">
+        <!-- Home Page (Default) -->
+        <section class="home-page active" id="homePage">
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <div class="welcome-card">
+                    <div class="welcome-header">
+                        <h1>👋 ডিজিটাল ভিশনে স্বাগতম</h1>
+                        <p class="welcome-subtitle">আপনার আয়ের নির্ভরযোগ্য প্ল্যাটফর্ম</p>
+                    </div>
+                    
+                    <!-- User Stats -->
+                    <div class="user-stats">
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-wallet"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="userBalance">৳0</h3>
+                                <p>ব্যালেন্স</p>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="completedTasks">0</h3>
+                                <p>কাজ সম্পন্ন</p>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="referralCount">0</h3>
+                                <p>রেফার</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Channel Subscription Check -->
+                    <div class="channel-check" id="channelCheck">
+                        <div class="channel-header">
+                            <i class="fas fa-info-circle"></i>
+                            <h4>গুরুত্বপূর্ণ নোটিশ</h4>
+                        </div>
+                        <p>সম্পূর্ণ এক্সেস পেতে আমাদের চ্যানেলগুলোতে জয়েন করুন:</p>
+                        <div class="channel-list">
+                            <a href="https://t.me/income460tu" class="channel-link" target="_blank">
+                                <i class="fab fa-telegram"></i> @income460tu
+                            </a>
+                            <a href="https://t.me/dvt1236" class="channel-link" target="_blank">
+                                <i class="fab fa-telegram"></i> @dvt1236
+                            </a>
+                        </div>
+                        <button class="btn-check" onclick="checkSubscription()">
+                            <i class="fas fa-sync-alt"></i> সাবস্ক্রিপশন চেক করুন
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories Section -->
+            <div class="categories-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-th-large"></i> সার্ভিস সমূহ</h2>
+                    <p>আপনার প্রয়োজনীয় সার্ভিস সিলেক্ট করুন</p>
+                </div>
+                <div id="categoriesContainer"></div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <div class="section-header">
+                    <h2><i class="fas fa-bolt"></i> দ্রুত একশন</h2>
+                </div>
+                <div class="actions-grid">
+                    <button class="action-btn" onclick="openPage('refer')">
+                        <i class="fas fa-user-plus"></i>
+                        <span>রেফার করুন</span>
+                    </button>
+                    <button class="action-btn" onclick="openPage('withdraw')">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>উত্তোলন করুন</span>
+                    </button>
+                    <button class="action-btn" onclick="openPage('tasks')">
+                        <i class="fas fa-tasks"></i>
+                        <span>কাজ দেখুন</span>
+                    </button>
+                    <button class="action-btn" onclick="openSupport()">
+                        <i class="fas fa-headset"></i>
+                        <span>সাপোর্ট</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Announcements -->
+            <div class="announcements">
+                <div class="section-header">
+                    <h2><i class="fas fa-bullhorn"></i> ঘোষণা</h2>
+                </div>
+                <div class="announcement-list">
+                    <div class="announcement-item">
+                        <div class="announcement-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="announcement-content">
+                            <h4>নতুন কাজ যুক্ত হয়েছে!</h4>
+                            <p>Micro Job সেকশনে নতুন কাজ যোগ করা হয়েছে। এখনই চেক করুন!</p>
+                        </div>
+                    </div>
+                    <div class="announcement-item">
+                        <div class="announcement-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <div class="announcement-content">
+                            <h4>রেফার বোনাস ৫ টাকা</h4>
+                            <p>প্রতি রেফারের জন্য ৫ টাকা বোনাস পাবেন। আজই রেফার শুরু করুন!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Other Pages Container -->
+        <div id="pagesContainer"></div>
+    </main>
+
+    <!-- Navigation Container -->
+    <div id="navigationContainer"></div>
+
+    <!-- Side Menu -->
+    <div class="side-menu" id="sideMenu">
+        <div class="side-menu-header">
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="user-info">
+                    <h3 id="menuUserName">ইউজার</h3>
+                    <p id="menuUserId">ID: 000000</p>
+                </div>
+            </div>
+            <button class="close-menu" onclick="toggleSideMenu()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="side-menu-body">
+            <div class="menu-section">
+                <h4>অ্যাকাউন্ট</h4>
+                <a href="#" class="menu-item" onclick="openPage('profile')">
+                    <i class="fas fa-user"></i>
+                    <span>প্রোফাইল</span>
+                </a>
+                <a href="#" class="menu-item" onclick="openPage('wallet')">
+                    <i class="fas fa-wallet"></i>
+                    <span>ওয়ালেট</span>
+                </a>
+                <a href="#" class="menu-item" onclick="openPage('refer')">
+                    <i class="fas fa-users"></i>
+                    <span>রেফার</span>
+                    <span class="badge" id="refBadge">0</span>
+                </a>
+            </div>
+
+            <div class="menu-section">
+                <h4>কাজ</h4>
+                <a href="#" class="menu-item" onclick="openPage('tasks')">
+                    <i class="fas fa-tasks"></i>
+                    <span>আমার কাজ</span>
+                    <span class="badge" id="taskBadge">0</span>
+                </a>
+                <a href="#" class="menu-item" onclick="openPage('history')">
+                    <i class="fas fa-history"></i>
+                    <span>কাজের ইতিহাস</span>
+                </a>
+            </div>
+
+            <div class="menu-section">
+                <h4>ফাইন্যান্স</h4>
+                <a href="#" class="menu-item" onclick="openPage('withdraw')">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>উত্তোলন</span>
+                </a>
+                <a href="#" class="menu-item" onclick="openPage('transactions')">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>ট্রানজেকশন</span>
+                </a>
+            </div>
+
+            <div class="menu-section">
+                <h4>সাপোর্ট</h4>
+                <a href="#" class="menu-item" onclick="openSupport()">
+                    <i class="fas fa-headset"></i>
+                    <span>সাপোর্ট</span>
+                </a>
+                <a href="#" class="menu-item" onclick="openPage('faq')">
+                    <i class="fas fa-question-circle"></i>
+                    <span>সাধারণ প্রশ্ন</span>
+                </a>
+                <a href="https://t.me/digitalvision_support" class="menu-item" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                    <span>টেলিগ্রাম গ্রুপ</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="side-menu-footer">
+            <div class="app-version">
+                <span>Version 1.0.0</span>
+            </div>
+            <button class="btn-logout" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>লগআউট</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Container -->
+    <div id="modalContainer"></div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer"></div>
+
+    <!-- Main Script -->
+    <script src="script.js"></script>
+    
+    <!-- Initialize Components -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize components
+            if (typeof Header !== 'undefined') {
+                const header = new Header();
+                header.init();
+            }
+            
+            if (typeof Categories !== 'undefined') {
+                const categories = new Categories();
+                categories.init();
+            }
+            
+            if (typeof Navigation !== 'undefined') {
+                const navigation = new Navigation();
+                navigation.init();
+            }
+            
+            // Initialize main app
+            initApp();
+        });
+    </script>
+</body>
+</html>
