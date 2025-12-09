@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdraw - Digital Vision</title>
+    <style>
+        .withdraw-container {
+            padding: 20px;
+            padding-bottom: 100px;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        .wallet-info {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .wallet-title {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .wallet-amount {
+            font-size: 40px;
+            font-weight: bold;
+            color: #2E8B57;
+            margin-bottom: 15px;
+        }
+        .minimum-note {
+            font-size: 14px;
+            color: #FF6B6B;
+            background: #ffeaea;
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        .withdraw-options {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: #2E8B57;
+            border-radius: 2px;
+        }
+        .amount-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .amount-option {
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .amount-option:hover {
+            border-color: #2E8B57;
+            transform: translateY(-3px);
+        }
+        .amount-option.selected {
+            border-color: #2E8B57;
+            background: rgba(46, 139, 87, 0.1);
+            transform: translateY(-3px);
+        }
+        .amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .charge {
+            font-size: 12px;
+            color: #FF6B6B;
+        }
+        .first-withdraw {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .first-withdraw h4 {
+            margin: 0 0 10px 0;
+            color: #856404;
+            font-size: 16px;
+        }
+        .first-withdraw p {
+            margin: 0;
+            color: #856404;
+            font-size: 14px;
+        }
+        .payment-methods {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        .method-option {
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .method-option:hover {
+            border-color: #2E8B57;
+        }
+        .method-option.selected {
+            border-color: #2E8B57;
+            background: rgba(46, 139, 87, 0.1);
+        }
+        .method-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+        .method-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+        .account-details {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: #2E8B57;
+            outline: none;
+        }
+        .info-note {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #0d47a1;
+        }
+        .withdraw-button {
+            background: linear-gradient(135deg, #2E8B57 0%, #3CB371 100%);
+            color: white;
+            border: none;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .withdraw-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(46, 139, 87, 0.3);
+        }
+        .withdraw-button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .history-section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .history-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .history-item:last-child {
+            border-bottom: none;
+        }
+        .history-amount {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .history-status {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .status-approved {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status-rejected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .history-date {
+            font-size: 12px;
+            color: #666;
+        }
+        .loader {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #2E8B57;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="withdraw-container">
+        <!-- Wallet Info -->
+        <div class="wallet-info">
+            <div class="wallet-title">Available in Cash Wallet</div>
+            <div class="wallet-amount" id="cash-balance">৳0</div>
+            <div class="minimum-note">Minimum withdrawal: ৳100</div>
+        </div>
+        
+        <!-- First Withdraw Notice -->
+        <div class="first-withdraw" id="first-withdraw-notice">
+            <h4>⚠️ First Withdraw Charges</h4>
+            <p>First withdrawal has extra charges: 10% + ৳10 fixed charge.</p>
+            <p>Example: ৳100 → ৳80 received (৳20 charge)</p>
+        </div>
+        
+        <!-- Withdraw Amount Options -->
+        <div class="withdraw-options">
+            <div class="section-title">Select Amount</div>
+            <div class="amount-grid" id="amount-options">
+                <div class="amount-option" data-amount="100">
+                    <div class="amount">৳100</div>
+                    <div class="charge" id="charge-100">Charge: ৳10</div>
+                </div>
+                <div class="amount-option" data-amount="300">
+                    <div class="amount">৳300</div>
+                    <div class="charge" id="charge-300">Charge: ৳30</div>
+                </div>
+                <div class="amount-option" data-amount="500">
+                    <div class="amount">৳500</div>
+                    <div class="charge" id="charge-500">Charge: ৳50</div>
+                </div>
+                <div class="amount-option" data-amount="1000">
+                    <div class="amount">৳1000</div>
+                    <div class="charge" id="charge-1000">Charge: ৳100</div>
+                </div>
+            </div>
+            <div class="custom-amount">
+                <input type="number" id="custom-amount" 
+                       placeholder="Enter custom amount (min: 100)"
+                       class="form-input"
+                       min="100">
+            </div>
+        </div>
+        
+        <!-- Payment Methods -->
+        <div class="payment-methods">
+            <div class="section-title">Payment Method</div>
+            <div class="method-grid" id="payment-methods">
+                <div class="method-option" data-method="bkash">
+                    <div class="method-icon">📱</div>
+                    <div class="method-name">bKash</div>
+                </div>
+                <div class="method-option" data-method="nagad">
+                    <div class="method-icon">💳</div>
+                    <div class="method-name">Nagad</div>
+                </div>
+                <div class="method-option" data-method="rocket">
+                    <div class="method-icon">🚀</div>
+                    <div class="method-name">Rocket</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Account Details -->
+        <div class="account-details">
+            <div class="section-title">Account Details</div>
+            <div class="form-group">
+                <label class="form-label" id="account-label">bKash Number</label>
+                <input type="text" 
+                       id="account-number" 
+                       class="form-input" 
+                       placeholder="01XXXXXXXXX"
+                       maxlength="11">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Account Type</label>
+                <select id="account-type" class="form-input">
+                    <option value="personal">Personal</option>
+                    <option value="agent">Agent</option>
+                </select>
+            </div>
+            <div class="info-note">
+                ⏰ Withdrawal requests are processed within 24 hours. Make sure your account details are correct.
+            </div>
+        </div>
+        
+        <!-- Withdraw Button -->
+        <button class="withdraw-button" id="withdraw-btn" onclick="submitWithdraw()">
+            <span>💸</span>
+            <span>Request Withdraw</span>
+            <div class="loader" id="withdraw-loader"></div>
+        </button>
+        
+        <!-- Withdrawal History -->
+        <div class="history-section" style="margin-top: 30px;">
+            <div class="section-title">Recent Withdrawals</div>
+            <div class="history-list" id="withdrawal-history">
+                <!-- History will be loaded here -->
+                <div class="history-item">
+                    <div>
+                        <div class="history-amount">৳100</div>
+                        <div class="history-date">01 Jan 2024</div>
+                    </div>
+                    <div class="history-status status-pending">Pending</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Withdraw page functionality
+        let selectedAmount = 0;
+        let selectedMethod = 'bkash';
+        let isFirstWithdraw = true;
+        let cashBalance = 0;
+        
+        async function loadWithdrawData() {
+            try {
+                // Load user's cash balance
+                const balanceRes = await fetch('/api/users/balance');
+                const balanceData = await balanceRes.json();
+                cashBalance = balanceData.cashWallet;
+                document.getElementById('cash-balance').textContent = `৳${cashBalance}`;
+                
+                // Check if first withdraw
+                const historyRes = await fetch('/api/withdraw/history/count');
+                const historyData = await historyRes.json();
+                isFirstWithdraw = historyData.count === 0;
+                
+                if (!isFirstWithdraw) {
+                    document.getElementById('first-withdraw-notice').style.display = 'none';
+                }
+                
+                // Update charges based on first withdraw
+                updateCharges();
+                
+                // Load withdrawal history
+                loadWithdrawalHistory();
+                
+                // Set default selected amount
+                selectAmount(100);
+                selectMethod('bkash');
+                
+            } catch (error) {
+                console.error('Failed to load withdraw data:', error);
+            }
+        }
+        
+        function updateCharges() {
+            const amounts = [100, 300, 500, 1000];
+            amounts.forEach(amount => {
+                const charge = calculateCharge(amount);
+                document.getElementById(`charge-${amount}`).textContent = `Charge: ৳${charge}`;
+            });
+        }
+        
+        function calculateCharge(amount) {
+            if (isFirstWithdraw) {
+                return Math.floor(amount * 0.1) + 10;
+            }
+            return Math.floor(amount * 0.1);
+        }
+        
+        function selectAmount(amount) {
+            selectedAmount = amount;
+            
+            // Update UI
+            document.querySelectorAll('.amount-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            event.target.closest('.amount-option').classList.add('selected');
+            
+            // Update custom amount input
+            document.getElementById('custom-amount').value = amount;
+            
+            // Update button state
+            updateWithdrawButton();
+        }
+        
+        function selectMethod(method) {
+            selectedMethod = method;
+            
+            // Update UI
+            document.querySelectorAll('.method-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            event.target.closest('.method-option').classList.add('selected');
+            
+            // Update account label
+            const labels = {
+                'bkash': 'bKash Number',
+                'nagad': 'Nagad Number',
+                'rocket': 'Rocket Number'
+            };
+            document.getElementById('account-label').textContent = labels[method] + ' *';
+        }
+        
+        function updateWithdrawButton() {
+            const button = document.getElementById('withdraw-btn');
+            const netAmount = selectedAmount - calculateCharge(selectedAmount);
+            
+            if (selectedAmount < 100) {
+                button.disabled = true;
+                button.innerHTML = '<span>⚠️</span><span>Minimum ৳100 required</span>';
+            } else if (cashBalance < selectedAmount) {
+                button.disabled = true;
+                button.innerHTML = '<span>⚠️</span><span>Insufficient balance</span>';
+            } else {
+                button.disabled = false;
+                button.innerHTML = `
+                    <span>💸</span>
+                    <span>Withdraw ৳${selectedAmount} (Get: ৳${netAmount})</span>
+                `;
+            }
+        }
+        
+        async function submitWithdraw() {
+            const accountNumber = document.getElementById('account-number').value;
+            const accountType = document.getElementById('account-type').value;
+            
+            // Validation
+            if (!accountNumber || accountNumber.length !== 11) {
+                alert('Please enter a valid 11-digit mobile number');
+                return;
+            }
+            
+            if (!selectedAmount || selectedAmount < 100) {
+                alert('Minimum withdrawal amount is ৳100');
+                return;
+            }
+            
+            if (cashBalance < selectedAmount) {
+                alert('Insufficient balance in Cash Wallet');
+                return;
+            }
+            
+            // Show loader
+            const button = document.getElementById('withdraw-btn');
+            const loader = document.getElementById('withdraw-loader');
+            const originalText = button.innerHTML;
+            
+            button.disabled = true;
+            loader.style.display = 'block';
+            button.innerHTML = '<span>Processing...</span>';
+            
+            try {
+                const response = await fetch('/api/withdraw/request', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        amount: selectedAmount,
+                        method: selectedMethod,
+                        accountNumber: accountNumber,
+                        accountType: accountType,
+                        charge: calculateCharge(selectedAmount),
+                        netAmount: selectedAmount - calculateCharge(selectedAmount)
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert('✅ Withdrawal request submitted successfully!\n\n' +
+                          `Amount: ৳${selectedAmount}\n` +
+                          `Charge: ৳${calculateCharge(selectedAmount)}\n` +
+                          `You'll receive: ৳${selectedAmount - calculateCharge(selectedAmount)}\n\n` +
+                          'Processing time: 24 hours');
+                    
+                    // Reset form
+                    document.getElementById('account-number').value = '';
+                    selectedAmount = 0;
+                    cashBalance -= selectedAmount;
+                    
+                    // Reload data
+                    loadWithdrawData();
+                    
+                } else {
+                    alert('❌ Withdrawal failed: ' + result.message);
+                }
+                
+            } catch (error) {
+                alert('❌ Network error. Please try again.');
+                console.error('Withdraw error:', error);
+                
+            } finally {
+                // Reset button
+                button.disabled = false;
+                loader.style.display = 'none';
+                button.innerHTML = originalText;
+            }
+        }
+        
+        async function loadWithdrawalHistory() {
+            try {
+                const response = await fetch('/api/withdraw/history');
+                const history = await response.json();
+                
+                const container = document.getElementById('withdrawal-history');
+                container.innerHTML = history.map(item => `
+                    <div class="history-item">
+                        <div>
+                            <div class="history-amount">৳${item.amount}</div>
+                            <div class="history-date">
+                                ${new Date(item.date).toLocaleDateString()}
+                            </div>
+                            <div style="font-size: 12px; color: #666;">
+                                ${item.method.toUpperCase()} - ${item.accountNumber}
+                            </div>
+                        </div>
+                        <div class="history-status status-${item.status}">
+                            ${item.status.charAt(0).toUpperCase() + item.status.slice(1)}
+                        </div>
+                    </div>
+                `).join('');
+                
+            } catch (error) {
+                console.error('Failed to load history:', error);
+            }
+        }
+        
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            loadWithdrawData();
+            
+            // Amount selection
+            document.querySelectorAll('.amount-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    selectAmount(parseInt(this.dataset.amount));
+                });
+            });
+            
+            // Method selection
+            document.querySelectorAll('.method-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    selectMethod(this.dataset.method);
+                });
+            });
+            
+            // Custom amount input
+            document.getElementById('custom-amount').addEventListener('input', function() {
+                const amount = parseInt(this.value) || 0;
+                if (amount >= 100) {
+                    selectedAmount = amount;
+                    updateWithdrawButton();
+                    
+                    // Update selected option
+                    document.querySelectorAll('.amount-option').forEach(option => {
+                        option.classList.remove('selected');
+                    });
+                }
+            });
+            
+            // Account number validation
+            document.getElementById('account-number').addEventListener('input', function() {
+                this.value = this.value.replace(/[^\d]/g, '').slice(0, 11);
+                updateWithdrawButton();
+            });
+        });
+    </script>
+</body>
+</html>
