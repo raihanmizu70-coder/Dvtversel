@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Digital Vision</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="logo-section">
+                <div class="logo">DV</div>
+                <h2>Digital Vision</h2>
+                <p>Admin Panel</p>
+            </div>
+            
+            <div class="user-info">
+                <div class="avatar">A</div>
+                <div class="user-details">
+                    <div class="user-name">Super Admin</div>
+                    <div class="user-role">Administrator</div>
+                </div>
+            </div>
+            
+            <nav class="menu">
+                <a href="#dashboard" class="menu-item active">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#tasks" class="menu-item">
+                    <i class="fas fa-tasks"></i>
+                    <span>Micro Jobs</span>
+                    <span class="badge" id="pending-tasks">0</span>
+                </a>
+                <a href="#users" class="menu-item">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
+                    <span class="badge" id="new-users">0</span>
+                </a>
+                <a href="#withdrawals" class="menu-item">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>Withdrawals</span>
+                    <span class="badge" id="pending-withdrawals">0</span>
+                </a>
+                <a href="#codes" class="menu-item">
+                    <i class="fas fa-code"></i>
+                    <span>Codes</span>
+                </a>
+                <a href="#content" class="menu-item">
+                    <i class="fas fa-edit"></i>
+                    <span>Content</span>
+                </a>
+                <a href="#finance" class="menu-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Finance</span>
+                </a>
+                <a href="#settings" class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+            
+            <div class="logout-section">
+                <button class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Dashboard</h1>
+                </div>
+                
+                <div class="header-right">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search...">
+                    </div>
+                    <div class="header-actions">
+                        <button class="notification-btn">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-count">3</span>
+                        </button>
+                        <div class="admin-profile">
+                            <div class="admin-avatar">SA</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Stats Cards -->
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #667eea;">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="total-users">0</div>
+                            <div class="stat-label">Total Users</div>
+                        </div>
+                        <div class="stat-trend up">+12%</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #2E8B57;">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="total-earned">৳0</div>
+                            <div class="stat-label">Total Earned</div>
+                        </div>
+                        <div class="stat-trend up">+25%</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #FF6B6B;">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="completed-tasks">0</div>
+                            <div class="stat-label">Tasks Done</div>
+                        </div>
+                        <div class="stat-trend up">+18%</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #FFA502;">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="total-withdrawn">৳0</div>
+                            <div class="stat-label">Withdrawn</div>
+                        </div>
+                        <div class="stat-trend down">-5%</div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Quick Actions -->
+            <section class="actions-section">
+                <h2 class="section-title">Quick Actions</h2>
+                <div class="actions-grid">
+                    <button class="action-btn" onclick="openAddTask()">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Add New Task</span>
+                    </button>
+                    <button class="action-btn" onclick="openVerifyTasks()">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Verify Tasks</span>
+                        <span class="badge">5</span>
+                    </button>
+                    <button class="action-btn" onclick="openProcessWithdrawals()">
+                        <i class="fas fa-money-check-alt"></i>
+                        <span>Process Withdrawals</span>
+                        <span class="badge">3</span>
+                    </button>
+                    <button class="action-btn" onclick="openAddCodes()">
+                        <i class="fas fa-code"></i>
+                        <span>Add Codes</span>
+                    </button>
+                    <button class="action-btn" onclick="openManageContent()">
+                        <i class="fas fa-edit"></i>
+                        <span>Manage Content</span>
+                    </button>
+                    <button class="action-btn" onclick="openSettings()">
+                        <i class="fas fa-cog"></i>
+                        <span>System Settings</span>
+                    </button>
+                </div>
+            </section>
+            
+            <!-- Recent Activities -->
+            <section class="activities-section">
+                <div class="section-header">
+                    <h2 class="section-title">Recent Activities</h2>
+                    <a href="#" class="view-all">View All</a>
+                </div>
+                <div class="activities-list" id="activities-list">
+                    <!-- Activities will be loaded here -->
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-text">
+                                <strong>New User</strong> registered: John Doe
+                            </div>
+                            <div class="activity-time">5 minutes ago</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Recent Withdrawals -->
+            <section class="withdrawals-section">
+                <div class="section-header">
+                    <h2 class="section-title">Pending Withdrawals</h2>
+                    <a href="#withdrawals" class="view-all">View All</a>
+                </div>
+                <div class="withdrawals-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Amount</th>
+                                <th>Method</th>
+                                <th>Account</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pending-withdrawals-list">
+                            <!-- Data will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Modals -->
+    <div class="modal" id="task-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Task</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Task form will be loaded here -->
+            </div>
+        </div>
+    </div>
+    
+    <script src="admin.js"></script>
+    <script>
+        // Initialize admin dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDashboardData();
+            setupEventListeners();
+        });
+    </script>
+</body>
+</html>
