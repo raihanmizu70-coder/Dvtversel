@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Vision - Home</title>
+    <style>
+        .home-container {
+            padding-bottom: 80px;
+        }
+        .welcome-banner {
+            background: linear-gradient(135deg, #2E8B57 0%, #3CB371 100%);
+            color: white;
+            padding: 25px 20px;
+            border-radius: 0 0 25px 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(46, 139, 87, 0.3);
+        }
+        .welcome-text h2 {
+            margin: 0 0 10px 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .welcome-text p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+            padding: 0 20px;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .stat-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .stat-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2E8B57;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+        }
+        .quick-actions {
+            padding: 0 20px;
+            margin: 25px 0;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: #2E8B57;
+            border-radius: 2px;
+        }
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .action-btn {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .action-btn:hover {
+            border-color: #2E8B57;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 139, 87, 0.2);
+        }
+        .action-icon {
+            font-size: 30px;
+        }
+        .action-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            text-align: center;
+        }
+        .task-section {
+            padding: 0 20px;
+            margin: 30px 0;
+        }
+        .task-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .view-all {
+            color: #2E8B57;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        .task-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .task-item {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .task-info h4 {
+            margin: 0 0 5px 0;
+            font-size: 16px;
+            color: #333;
+        }
+        .task-info p {
+            margin: 0;
+            font-size: 12px;
+            color: #666;
+        }
+        .task-reward {
+            background: #2E8B57;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .promo-banner {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            color: white;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .promo-banner::before {
+            content: '🔥';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+        }
+        .promo-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .promo-desc {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        .promo-btn {
+            background: white;
+            color: #FF6B6B;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="home-container">
+        <!-- Welcome Banner -->
+        <div class="welcome-banner">
+            <div class="welcome-text">
+                <h2>Welcome to Digital Vision! 👋</h2>
+                <p>Start earning today by completing simple tasks. Your journey to financial freedom starts here!</p>
+            </div>
+        </div>
+        
+        <!-- Quick Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-icon">💰</span>
+                <div class="stat-value" id="total-earned">৳0</div>
+                <div class="stat-label">Total Earned</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">✅</span>
+                <div class="stat-value" id="tasks-done">0</div>
+                <div class="stat-label">Tasks Done</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">👥</span>
+                <div class="stat-value" id="ref-earned">৳0</div>
+                <div class="stat-label">Referral Earn</div>
+            </div>
+        </div>
+        
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <div class="section-title">Quick Actions</div>
+            <div class="actions-grid">
+                <div class="action-btn" onclick="window.startTask(1)">
+                    <span class="action-icon">🧩</span>
+                    <span class="action-text">Start Micro Job</span>
+                </div>
+                <div class="action-btn" onclick="window.showCategory(2)">
+                    <span class="action-icon">💌</span>
+                    <span class="action-text">Buy GST Code</span>
+                </div>
+                <div class="action-btn" onclick="window.showCategory(6)">
+                    <span class="action-icon">💎</span>
+                    <span class="action-text">Diamond Top-Up</span>
+                </div>
+                <div class="action-btn" onclick="window.navigateTo('refer')">
+                    <span class="action-icon">📤</span>
+                    <span class="action-text">Invite & Earn</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Available Tasks -->
+        <div class="task-section">
+            <div class="task-header">
+                <div class="section-title">Available Tasks</div>
+                <a href="#" class="view-all" onclick="window.showAllTasks()">View All →</a>
+            </div>
+            <div class="task-list" id="task-list">
+                <!-- Tasks will be loaded by JavaScript -->
+                <div class="task-item">
+                    <div class="task-info">
+                        <h4>Complete Survey</h4>
+                        <p>Simple survey - 5 minutes</p>
+                    </div>
+                    <div class="task-reward">৳3</div>
+                </div>
+                <div class="task-item">
+                    <div class="task-info">
+                        <h4>Watch Video</h4>
+                        <p>Watch and like video</p>
+                    </div>
+                    <div class="task-reward">৳2</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Promo Banner -->
+        <div class="promo-banner">
+            <div class="promo-title">🎁 Special Offer!</div>
+            <div class="promo-desc">Get 50% bonus on first withdraw above ৳500</div>
+            <button class="promo-btn" onclick="window.navigateTo('withdraw')">Claim Now</button>
+        </div>
+    </div>
+    
+    <script>
+        // Home page specific functions
+        window.loadHomeStats = async function() {
+            try {
+                const response = await fetch('/api/users/stats');
+                const stats = await response.json();
+                
+                document.getElementById('total-earned').textContent = `৳${stats.totalEarned}`;
+                document.getElementById('tasks-done').textContent = stats.tasksCompleted;
+                document.getElementById('ref-earned').textContent = `৳${stats.referralEarnings}`;
+                
+                // Load tasks
+                const tasksResponse = await fetch('/api/tasks/available');
+                const tasks = await tasksResponse.json();
+                const taskList = document.getElementById('task-list');
+                
+                taskList.innerHTML = tasks.map(task => `
+                    <div class="task-item" onclick="window.startTask(${task.id})">
+                        <div class="task-info">
+                            <h4>${task.title}</h4>
+                            <p>${task.description}</p>
+                        </div>
+                        <div class="task-reward">৳${task.reward}</div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Failed to load home stats:', error);
+            }
+        };
+        
+        window.startTask = function(taskId) {
+            // This will be handled by main script
+            const event = new CustomEvent('start-task', { 
+                detail: { taskId },
+                bubbles: true 
+            });
+            document.dispatchEvent(event);
+        };
+        
+        window.showCategory = function(categoryId) {
+            const event = new CustomEvent('show-category', { 
+                detail: { categoryId },
+                bubbles: true 
+            });
+            document.dispatchEvent(event);
+        };
+        
+        window.navigateTo = function(page) {
+            const event = new CustomEvent('navigate-to', { 
+                detail: { page },
+                bubbles: true 
+            });
+            document.dispatchEvent(event);
+        };
+        
+        window.showAllTasks = function() {
+            window.navigateTo('tasks');
+        };
+        
+        // Initialize home page
+        document.addEventListener('DOMContentLoaded', function() {
+            window.loadHomeStats();
+        });
+    </script>
+</body>
+</html>
