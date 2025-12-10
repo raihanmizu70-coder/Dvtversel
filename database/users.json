@@ -1,0 +1,240 @@
+{
+  "users": [
+    {
+      "id": 6561117046,
+      "telegram_id": 6561117046,
+      "username": "Miju132",
+      "first_name": "ᴺꪎᵗ.M i z u メ",
+      "last_name": "",
+      "language_code": "en",
+      "is_bot": false,
+      "is_premium": false,
+      "referral_code": "DVMJ656111",
+      "referrer_code": null,
+      "join_date": "2024-01-15T10:30:00.000Z",
+      "last_active": "2024-01-20T15:45:00.000Z",
+      "balance": 150.00,
+      "main_wallet": 100.00,
+      "cash_wallet": 50.00,
+      "total_earned": 200.00,
+      "total_withdrawn": 0.00,
+      "tasks_completed": 5,
+      "tasks_pending": 0,
+      "tasks_rejected": 0,
+      "referrals": 3,
+      "referral_earnings": 15.00,
+      "withdraw_count": 0,
+      "level": 1,
+      "experience": 50,
+      "is_active": true,
+      "is_blocked": false,
+      "is_verified": false,
+      "first_withdraw": true,
+      "channels_joined": [
+        "@income460tu",
+        "@dvt1236"
+      ],
+      "settings": {
+        "notifications": true,
+        "email_updates": false,
+        "auto_convert": false,
+        "theme": "dark"
+      },
+      "contact": {
+        "email": null,
+        "phone": null
+      },
+      "payment_methods": [],
+      "created_at": "2024-01-15T10:30:00.000Z",
+      "updated_at": "2024-01-20T15:45:00.000Z"
+    },
+    {
+      "id": 1234567890,
+      "telegram_id": 1234567890,
+      "username": "testuser",
+      "first_name": "Test",
+      "last_name": "User",
+      "language_code": "en",
+      "is_bot": false,
+      "is_premium": false,
+      "referral_code": "DVTU123456",
+      "referrer_code": "DVMJ656111",
+      "join_date": "2024-01-18T14:20:00.000Z",
+      "last_active": "2024-01-19T09:15:00.000Z",
+      "balance": 30.00,
+      "main_wallet": 30.00,
+      "cash_wallet": 0.00,
+      "total_earned": 30.00,
+      "total_withdrawn": 0.00,
+      "tasks_completed": 1,
+      "tasks_pending": 0,
+      "tasks_rejected": 0,
+      "referrals": 0,
+      "referral_earnings": 0.00,
+      "withdraw_count": 0,
+      "level": 1,
+      "experience": 10,
+      "is_active": true,
+      "is_blocked": false,
+      "is_verified": false,
+      "first_withdraw": true,
+      "channels_joined": [
+        "@income460tu",
+        "@dvt1236"
+      ],
+      "settings": {
+        "notifications": true,
+        "email_updates": false,
+        "auto_convert": false,
+        "theme": "light"
+      },
+      "contact": {
+        "email": "test@example.com",
+        "phone": "+8801XXXXXXXXX"
+      },
+      "payment_methods": [
+        {
+          "type": "bkash",
+          "number": "01XXXXXXXXX",
+          "name": "Test User",
+          "is_verified": true
+        }
+      ],
+      "created_at": "2024-01-18T14:20:00.000Z",
+      "updated_at": "2024-01-19T09:15:00.000Z"
+    },
+    {
+      "id": 9876543210,
+      "telegram_id": 9876543210,
+      "username": "newuser_01",
+      "first_name": "New",
+      "last_name": "User",
+      "language_code": "bn",
+      "is_bot": false,
+      "is_premium": false,
+      "referral_code": "DVNU987654",
+      "referrer_code": "DVTU123456",
+      "join_date": "2024-01-19T16:45:00.000Z",
+      "last_active": "2024-01-19T16:45:00.000Z",
+      "balance": 0.00,
+      "main_wallet": 0.00,
+      "cash_wallet": 0.00,
+      "total_earned": 0.00,
+      "total_withdrawn": 0.00,
+      "tasks_completed": 0,
+      "tasks_pending": 0,
+      "tasks_rejected": 0,
+      "referrals": 0,
+      "referral_earnings": 0.00,
+      "withdraw_count": 0,
+      "level": 1,
+      "experience": 0,
+      "is_active": true,
+      "is_blocked": false,
+      "is_verified": false,
+      "first_withdraw": true,
+      "channels_joined": [],
+      "settings": {
+        "notifications": true,
+        "email_updates": false,
+        "auto_convert": false,
+        "theme": "auto"
+      },
+      "contact": {
+        "email": null,
+        "phone": null
+      },
+      "payment_methods": [],
+      "created_at": "2024-01-19T16:45:00.000Z",
+      "updated_at": "2024-01-19T16:45:00.000Z"
+    }
+  ],
+  "user_activities": [
+    {
+      "id": 1,
+      "user_id": 6561117046,
+      "activity_type": "task_complete",
+      "description": "Completed task: Complete Simple Survey",
+      "amount": 3.00,
+      "status": "completed",
+      "created_at": "2024-01-15T11:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "user_id": 6561117046,
+      "activity_type": "task_complete",
+      "description": "Completed task: Watch YouTube Video",
+      "amount": 2.00,
+      "status": "completed",
+      "created_at": "2024-01-15T14:30:00.000Z"
+    },
+    {
+      "id": 3,
+      "user_id": 6561117046,
+      "activity_type": "referral_bonus",
+      "description": "Referral bonus from user: testuser",
+      "amount": 5.00,
+      "status": "completed",
+      "created_at": "2024-01-18T14:25:00.000Z"
+    },
+    {
+      "id": 4,
+      "user_id": 1234567890,
+      "activity_type": "task_complete",
+      "description": "Completed task: Complete Simple Survey",
+      "amount": 3.00,
+      "status": "completed",
+      "created_at": "2024-01-18T15:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "user_id": 1234567890,
+      "activity_type": "referral_bonus",
+      "description": "Referral bonus from user: newuser_01",
+      "amount": 5.00,
+      "status": "pending",
+      "created_at": "2024-01-19T16:46:00.000Z"
+    }
+  ],
+  "referrals": [
+    {
+      "id": 1,
+      "referrer_id": 6561117046,
+      "referred_id": 1234567890,
+      "referral_code": "DVMJ656111",
+      "status": "active",
+      "bonus_paid": true,
+      "bonus_amount": 5.00,
+      "referred_earned": 30.00,
+      "referred_withdrawn": 0.00,
+      "created_at": "2024-01-18T14:20:00.000Z",
+      "bonus_paid_at": "2024-01-18T14:25:00.000Z"
+    },
+    {
+      "id": 2,
+      "referrer_id": 1234567890,
+      "referred_id": 9876543210,
+      "referral_code": "DVTU123456",
+      "status": "active",
+      "bonus_paid": false,
+      "bonus_amount": 5.00,
+      "referred_earned": 0.00,
+      "referred_withdrawn": 0.00,
+      "created_at": "2024-01-19T16:45:00.000Z",
+      "bonus_paid_at": null
+    }
+  ],
+  "statistics": {
+    "total_users": 3,
+    "active_users_today": 2,
+    "new_users_today": 1,
+    "total_balance": 180.00,
+    "total_earned": 230.00,
+    "total_withdrawn": 0.00,
+    "pending_withdrawals": 0.00,
+    "total_tasks_completed": 6,
+    "total_referrals": 2,
+    "total_referral_bonus": 20.00,
+    "platform_revenue": 0.00
+  }
+}
