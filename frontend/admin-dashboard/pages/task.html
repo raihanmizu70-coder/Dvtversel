@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks - Admin Panel</title>
+    <style>
+        .tasks-content {
+            padding: 20px;
+        }
+        
+        .tasks-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .header-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .header-title i {
+            color: #2E8B57;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .action-btn {
+            padding: 12px 25px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .btn-primary {
+            background: #2E8B57;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #267049;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 139, 87, 0.3);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #333;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .btn-secondary:hover {
+            border-color: #2E8B57;
+            color: #2E8B57;
+        }
+        
+        .tabs-container {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        .tabs-header {
+            display: flex;
+            border-bottom: 1px solid #e0e0e0;
+            background: #f8f9fa;
+        }
+        
+        .tab-button {
+            padding: 20px 30px;
+            background: none;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tab-button:hover {
+            color: #2E8B57;
+            background: rgba(46, 139, 87, 0.05);
+        }
+        
+        .tab-button.active {
+            color: #2E8B57;
+        }
+        
+        .tab-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #2E8B57;
+        }
+        
+        .tab-badge {
+            background: #FF4757;
+            color: white;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+        
+        .tab-content {
+            padding: 30px;
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .filters-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .filter-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .filter-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .filter-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-input:focus {
+            border-color: #2E8B57;
+            outline: none;
+        }
+        
+        .filter-select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+            cursor: pointer;
+        }
+        
+        .tasks-table {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        thead {
+            background: #f8f9fa;
+        }
+        
+        th {
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #e0e0e0;
+            font-size: 14px;
+        }
+        
+        td {
+            padding: 20px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .task-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .task-description {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        .task-category {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .category-micro {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .category-survey {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+        
+        .category-watch {
+            background: #e8f5e8;
+            color: #2E8B57;
+        }
+        
+        .task-reward {
+            font-weight: 700;
+            color: #2E8B57;
+            font-size: 16px;
+        }
+        
+        .task-slots {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .task-status {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .status-active {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-inactive {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .task-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .action-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .action-edit {
+            background: #e3f2fd;
+            color: #1976d2;
+            border: 1px solid #bbdefb;
+        }
+        
+        .action-edit:hover {
+            background: #bbdefb;
+        }
+        
+        .action-delete {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .action-delete:hover {
+            background: #f5c6cb;
+        }
+        
+        .action-view {
+            background: #e8f5e8;
+            color: #2E8B57;
+            border: 1px solid #c8e6c9;
+        }
+        
+        .action-view:hover {
+            background: #c8e6c9;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        .page-button {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .page-button:hover {
+            border-color: #2E8B57;
+            color: #2E8B57;
+        }
+        
+        .page-button.active {
+            background: #2E8B57;
+            border-color: #2E8B57;
+            color: white;
+        }
+        
+        .page-button.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .empty-state i {
+            font-size: 60px;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .empty-state h3 {
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .empty-state p {
+            color: #999;
+            margin-bottom: 20px;
+        }
+        
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card-small {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #2E8B57;
+        }
+        
+        .stat-value-small {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label-small {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .submission-details {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        .submission-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .submission-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .info-item {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .info-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .info-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .screenshot-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .screenshot-img {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .review-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .review-btn {
+            padding: 15px 30px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-approve {
+            background: #2E8B57;
+            color: white;
+        }
+        
+        .btn-approve:hover {
+            background: #267049;
+            transform: translateY(-2px);
+        }
+        
+        .btn-reject {
+            background: #FF4757;
+            color: white;
+        }
+        
+        .btn-reject:hover {
+            background: #ff3b4f;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 1024px) {
+            .tasks-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .header-actions {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .tab-button {
+                padding: 15px 20px;
+                font-size: 14px;
+            }
+            
+            th, td {
+                padding: 12px;
+            }
+            
+            .task-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tasks-content">
+        <!-- Header -->
+        <div class="tasks-header">
+            <h1 class="header-title">
+                <i class="fas fa-tasks"></i>
+                Micro Jobs Management
+            </h1>
+            <div class="header-actions">
+                <button class="action-btn btn-primary" onclick="openAddTaskModal()">
+                    <i class="fas fa-plus-circle"></i>
+                    Add New Task
+                </button>
+                <button class="action-btn btn-secondary" onclick="exportTasks()">
+                    <i class="fas fa-download"></i>
+                    Export Tasks
+                </button>
+                <button class="action-btn btn-secondary" onclick="refreshTasks()">
+                    <i class="fas fa-redo"></i>
+                    Refresh
+                </button>
+            </div>
+        </div>
+        
+        <!-- Stats Overview -->
+        <div class="stats-cards">
+            <div class="stat-card-small">
+                <div class="stat-value-small" id="total-tasks-count">0</div>
+                <div class="stat-label-small">Total Tasks</div>
+            </div>
+            <div class="stat-card-small">
+                <div class="stat-value-small" id="active-tasks-count">0</div>
+                <div class="stat-label-small">Active Tasks</div>
+            </div>
+            <div class="stat-card-small">
+                <div class="stat-value-small" id="pending-submissions">0</div>
+                <div class="stat-label-small">Pending Review</div>
+            </div>
+            <div class="stat-card-small">
+                <div class="stat-value-small" id="total-earned">৳0</div>
+                <div class="stat-label-small">Total Earned</div>
+            </div>
+        </div>
+        
+        <!-- Tabs -->
+        <div class="tabs-container">
+            <div class="tabs-header">
+                <button class="tab-button active" data-tab="active-tasks">
+                    <i class="fas fa-play-circle"></i>
+                    <span>Active Tasks</span>
+                </button>
+                <button class="tab-button" data-tab="pending-submissions">
+                    <i class="fas fa-clock"></i>
+                    <span>Pending Review</span>
+                    <span class="tab-badge" id="pending-badge">0</span>
+                </button>
+                <button class="tab-button" data-tab="completed-tasks">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Completed</span>
+                </button>
+                <button class="tab-button" data-tab="inactive-tasks">
+                    <i class="fas fa-pause-circle"></i>
+                    <span>Inactive</span>
+                </button>
+            </div>
+            
+            <!-- Active Tasks Tab -->
+            <div class="tab-content active" id="active-tasks-content">
+                <!-- Filters -->
+                <div class="filters-section">
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <label class="filter-label">Search Tasks</label>
+                            <input type="text" 
+                                   class="filter-input" 
+                                   id="search-tasks"
+                                   placeholder="Search by title or description...">
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Category</label>
+                            <select class="filter-select" id="category-filter">
+                                <option value="">All Categories</option>
+                                <option value="micro_job">Micro Job</option>
+                                <option value="survey">Survey</option>
+                                <option value="watch">Watch Video</option>
+                                <option value="install">Install App</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Sort By</label>
+                            <select class="filter-select" id="sort-filter">
+                                <option value="newest">Newest First</option>
+                                <option value="oldest">Oldest First</option>
+                                <option value="reward_high">Highest Reward</option>
+                                <option value="reward_low">Lowest Reward</option>
+                                <option value="popular">Most Popular</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tasks Table -->
+                <div class="tasks-table">
+                    <table id="active-tasks-table">
+                        <thead>
+                            <tr>
+                                <th width="30%">Task Details</th>
+                                <th width="15%">Category</th>
+                                <th width="15%">Reward</th>
+                                <th width="15%">Slots</th>
+                                <th width="15%">Status</th>
+                                <th width="10%">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Tasks will be loaded here -->
+                            <tr>
+                                <td colspan="6" style="text-align: center; padding: 40px;">
+                                    <div class="loading">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                        Loading tasks...
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="pagination" id="active-pagination">
+                    <button class="page-button disabled" id="prev-page">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="page-button active">1</button>
+                    <button class="page-button">2</button>
+                    <button class="page-button">3</button>
+                    <button class="page-button" id="next-page">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Pending Submissions Tab -->
+            <div class="tab-content" id="pending-submissions-content">
+                <div class="empty-state" id="empty-pending" style="display: none;">
+                    <i class="fas fa-clock"></i>
+                    <h3>No Pending Submissions</h3>
+                    <p>All submissions have been reviewed.</p>
+                </div>
+                
+                <div id="pending-submissions-list">
+                    <!-- Pending submissions will be loaded here -->
+                </div>
+            </div>
+            
+            <!-- Completed Tasks Tab -->
+            <div class="tab-content" id="completed-tasks-content">
+                <div class="empty-state" id="empty-completed" style="display: none;">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>No Completed Tasks</h3>
+                    <p>No tasks have been completed yet.</p>
+                </div>
+                
+                <div id="completed-tasks-list">
+                    <!-- Completed tasks will be loaded here -->
+                </div>
+            </div>
+            
+            <!-- Inactive Tasks Tab -->
+            <div class="tab-content" id="inactive-tasks-content">
+                <div class="empty-state" id="empty-inactive" style="display: none;">
+                    <i class="fas fa-pause-circle"></i>
+                    <h3>No Inactive Tasks</h3>
+                    <p>All tasks are currently active.</p>
+                </div>
+                
+                <div id="inactive-tasks-list">
+                    <!-- Inactive tasks will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modals -->
+    <div class="modal" id="task-modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h3 id="task-modal-title">Add New Task</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Task form will be loaded by JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal" id="submission-modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h3>Review Submission</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="submission-modal-body">
+                <!-- Submission details will be loaded here -->
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Tasks management functionality
+        let currentTab = 'active-tasks';
+        let currentPage = 1;
+        let totalPages = 1;
+        let tasksData = [];
+        let pendingSubmissions = [];
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTasksData();
+            setupTabListeners();
+            setupFilterListeners();
+        });
+        
+        async function loadTasksData() {
+            try {
+                // Load tasks statistics
+                const statsResponse = await fetch('/api/admin/tasks/stats');
+                const stats = await statsResponse.json();
+                
+                updateStats(stats);
+                
+                // Load tasks based on current tab
+                if (currentTab === 'active-tasks') {
+                    await loadActiveTasks();
+                } else if (currentTab === 'pending-submissions') {
+                    await loadPendingSubmissions();
+                } else if (currentTab === 'completed-tasks') {
+                    await loadCompletedTasks();
+                } else if (currentTab === 'inactive-tasks') {
+                    await loadInactiveTasks();
+                }
+                
+            } catch (error) {
+                console.error('Failed to load tasks data:', error);
+                showError('Failed to load tasks data. Please try again.');
+            }
+        }
+        
+        function updateStats(stats) {
+            document.getElementById('total-tasks-count').textContent = stats.totalTasks || '0';
+            document.getElementById('active-tasks-count').textContent = stats.activeTasks || '0';
+            document.getElementById('pending-submissions').textContent = stats.pendingSubmissions || '0';
+            document.getElementById('total-earned').textContent = `৳${stats.totalEarned || '0'}`;
+            document.getElementById('pending-badge').textContent = stats.pendingSubmissions || '0';
+        }
+        
+        async function loadActiveTasks() {
+            try {
+                const response = await fetch(`/api/admin/tasks/active?page=${currentPage}`);
+                const data = await response.json();
+                
+                tasksData = data.tasks;
+                totalPages = data.totalPages;
+                
+                renderActiveTasks();
+                updatePagination();
+                
+            } catch (error) {
+                console.error('Failed to load active tasks:', error);
+                showError('Failed to load tasks. Please try again.');
+            }
+        }
+        
+        function renderActiveTasks() {
+            const tableBody = document.querySelector('#active-tasks-table tbody');
+            
+            if (!tasksData || tasksData.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="6" style="text-align: center; padding: 40px;">
+                            <div class="empty-state" style="padding: 0;">
+                                <i class="fas fa-tasks"></i>
+                                <h3>No Active Tasks</h3>
+                                <p>Create your first task to get started.</p>
+                                <button onclick="openAddTaskModal()" style="
+                                    margin-top: 15px;
+                                    padding: 10px 20px;
+                                    background: #2E8B57;
+                                    color: white;
+                                    border: none;
+                                    border-radius: 5px;
+                                    cursor: pointer;
+                                ">
+                                    <i class="fas fa-plus"></i> Add Task
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            tableBody.innerHTML = tasksData.map(task => `
+                <tr>
+                    <td>
+                        <div class="task-title">${task.title}</div>
+                        <div class="task-description">${task.description}</div>
+                    </td>
+                    <td>
+                        <span class="task-category category-${task.category}">
+                            ${formatCategory(task.category)}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="task-reward">৳${task.reward}</div>
+                        <div class="task-slots">${task.duration} min</div>
+                    </td>
+                    <td>
+                        <div>${task.completedSlots || 0}/${task.totalSlots}</div>
+                        <div class="task-slots">${calculatePercentage(task.completedSlots, task.totalSlots)}% completed</div>
+                    </td>
+                    <td>
+                        <span class="task-status status-${task.status}">
+                            ${task.status.charAt(0).toUpperCase() + task.status.slice(1)}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="task-actions">
+                            <div class="action-icon action-edit" onclick="editTask(${task.id})">
+                                <i class="fas fa-edit"></i>
+                            </div>
+                            <div class="action-icon action-delete" onclick="deleteTask(${task.id})">
+                                <i class="fas fa-trash"></i>
+                            </div>
+                            <div class="action-icon action-view" onclick="viewTask(${task.id})">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        async function loadPendingSubmissions() {
+            try {
+                const response = await fetch('/api/admin/tasks/submissions/pending');
+                const data = await response.json();
+                
+                pendingSubmissions = data.submissions;
+                renderPendingSubmissions();
+                
+            } catch (error) {
+                console.error('Failed to load pending submissions:', error);
+                showError('Failed to load submissions. Please try again.');
+            }
+        }
+        
+        function renderPendingSubmissions() {
+            const container = document.getElementById('pending-submissions-list');
+            const emptyState = document.getElementById('empty-pending');
+            
+            if (!pendingSubmissions || pendingSubmissions.length === 0) {
+                container.style.display = 'none';
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            emptyState.style.display = 'none';
+            container.style.display = 'block';
+            container.innerHTML = pendingSubmissions.map(sub => `
+                <div class="submission-details" id="submission-${sub.id}">
+                    <div class="submission-header">
+                        <div>
+                            <h3 style="margin: 0; color: #333;">${sub.taskTitle}</h3>
+                            <p style="margin: 5px 0 0 0; color: #666;">
+                                Submitted by: <strong>${sub.userName}</strong> • 
+                                ${formatTime(sub.submittedAt)}
+                            </p>
+                        </div>
+                        <div>
+                            <span class="task-reward">৳${sub.reward}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="submission-info">
+                        <div class="info-item">
+                            <div class="info-label">User ID</div>
+                            <div class="info-value">${sub.userId}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Task ID</div>
+                            <div class="info-value">${sub.taskId}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Submitted</div>
+                            <div class="info-value">${new Date(sub.submittedAt).toLocaleString()}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Status</div>
+                            <div class="info-value">
+                                <span class="task-status status-pending">Pending</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    ${sub.screenshot ? `
+                        <div class="screenshot-container">
+                            <div style="margin-bottom: 15px; font-weight: 500; color: #333;">
+                                Submitted Screenshot:
+                            </div>
+                            <img src="${sub.screenshot}" 
+                                 alt="Task Screenshot" 
+                                 class="screenshot-img"
+                                 onclick="viewScreenshot('${sub.screenshot}')"
+                                 style="cursor: pointer;">
+                            <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                                Click to view full size
+                            </div>
+                        </div>
+                    ` : `
+                        <div class="screenshot-container">
+                            <div style="color: #FF6B6B; font-weight: 500;">
+                                <i class="fas fa-exclamation-circle"></i>
+                                No screenshot provided
+                            </div>
+                        </div>
+                    `}
+                    
+                    <div class="review-actions">
+                        <button class="review-btn btn-approve" onclick="approveSubmission(${sub.id})">
+                            <i class="fas fa-check"></i>
+                            Approve & Pay ৳${sub.reward}
+                        </button>
+                        <button class="review-btn btn-reject" onclick="rejectSubmission(${sub.id})">
+                            <i class="fas fa-times"></i>
+                            Reject Submission
+                        </button>
+                        <button class="review-btn" onclick="viewSubmissionDetails(${sub.id})" 
+                                style="background: #6c757d; color: white;">
+                            <i class="fas fa-info-circle"></i>
+                            More Details
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        async function loadCompletedTasks() {
+            // Implementation for completed tasks
+            console.log('Loading completed tasks...');
+        }
+        
+        async function loadInactiveTasks() {
+            // Implementation for inactive tasks
+            console.log('Loading inactive tasks...');
+        }
+        
+        function setupTabListeners() {
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabId = this.dataset.tab;
+                    
+                    // Update active tab
+                    document.querySelectorAll('.tab-button').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // Show corresponding content
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    document.getElementById(`${tabId}-content`).classList.add('active');
+                    
+                    // Load data for the tab
+                    currentTab = tabId;
+                    currentPage = 1;
+                    loadTasksData();
+                });
+            });
+        }
+        
+        function setupFilterListeners() {
+            // Search input
+            const searchInput = document.getElementById('search-tasks');
+            searchInput.addEventListener('input', debounce(function() {
+                filterTasks();
+            }, 300));
+            
+            // Category filter
+            document.getElementById('category-filter').addEventListener('change', function() {
+                filterTasks();
+            });
+            
+            // Sort filter
+            document.getElementById('sort-filter').addEventListener('change', function() {
+                filterTasks();
+            });
+        }
+        
+        function filterTasks() {
+            const searchTerm = document.getElementById('search-tasks').value.toLowerCase();
+            const category = document.getElementById('category-filter').value;
+            const sortBy = document.getElementById('sort-filter').value;
+            
+            // Filter and sort tasksData
+            let filtered = tasksData;
+            
+            if (searchTerm) {
+                filtered = filtered.filter(task => 
+                    task.title.toLowerCase().includes(searchTerm) ||
+                    task.description.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            if (category) {
+                filtered = filtered.filter(task => task.category === category);
+            }
+            
+            // Sort
+            filtered.sort((a, b) => {
+                switch (sortBy) {
+                    case 'newest':
+                        return new Date(b.createdAt) - new Date(a.createdAt);
+                    case 'oldest':
+                        return new Date(a.createdAt) - new Date(b.createdAt);
+                    case 'reward_high':
+                        return b.reward - a.reward;
+                    case 'reward_low':
+                        return a.reward - b.reward;
+                    case 'popular':
+                        return (b.completedSlots / b.totalSlots) - (a.completedSlots / a.totalSlots);
+                    default:
+                        return 0;
+                }
+            });
+            
+            // Update table
+            const tableBody = document.querySelector('#active-tasks-table tbody');
+            if (filtered.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="6" style="text-align: center; padding: 40px; color: #666;">
+                            <i class="fas fa-search"></i>
+                            <div style="margin-top: 10px;">No tasks found matching your criteria</div>
+                        </td>
+                    </tr>
+                `;
+            } else {
+                tableBody.innerHTML = filtered.map(task => `
+                    <tr>
+                        <td>
+                            <div class="task-title">${task.title}</div>
+                            <div class="task-description">${task.description}</div>
+                        </td>
+                        <td>
+                            <span class="task-category category-${task.category}">
+                                ${formatCategory(task.category)}
+                            </span>
+                        </td>
+                        <td>
+                            <div class="task-reward">৳${task.reward}</div>
+                            <div class="task-slots">${task.duration} min</div>
+                        </td>
+                        <td>
+                            <div>${task.completedSlots || 0}/${task.totalSlots}</div>
+                            <div class="task-slots">${calculatePercentage(task.completedSlots, task.totalSlots)}% completed</div>
+                        </td>
+                        <td>
+                            <span class="task-status status-${task.status}">
+                                ${task.status.charAt(0).toUpperCase() + task.status.slice(1)}
+                            </span>
+                        </td>
+                        <td>
+                            <div class="task-actions">
+                                <div class="action-icon action-edit" onclick="editTask(${task.id})">
+                                    <i class="fas fa-edit"></i>
+                                </div>
+                                <div class="action-icon action-delete" onclick="deleteTask(${task.id})">
+                                    <i class="fas fa-trash"></i>
+                                </div>
+                                <div class="action-icon action-view" onclick="viewTask(${task.id})">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+        }
+        
+        function updatePagination() {
+            const pagination = document.getElementById('active-pagination');
+            pagination.innerHTML = '';
+            
+            // Previous button
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'page-button' + (currentPage === 1 ? ' disabled' : '');
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+            prevBtn.onclick = () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    loadActiveTasks();
+                }
+            };
+            pagination.appendChild(prevBtn);
+            
+            // Page numbers
+            const startPage = Math.max(1, currentPage - 2);
+            const endPage = Math.min(totalPages, currentPage + 2);
+            
+            for (let i = startPage; i <= endPage; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.className = 'page-button' + (i === currentPage ? ' active' : '');
+                pageBtn.textContent = i;
+                pageBtn.onclick = () => {
+                    currentPage = i;
+                    loadActiveTasks();
+                };
+                pagination.appendChild(pageBtn);
+            }
+            
+            // Next button
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'page-button' + (currentPage === totalPages ? ' disabled' : '');
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            nextBtn.onclick = () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    loadActiveTasks();
+                }
+            };
+            pagination.appendChild(nextBtn);
+        }
+        
+        function openAddTaskModal() {
+            const modal = document.getElementById('task-modal');
+            const title = document.getElementById('task-modal-title');
+            const body = modal.querySelector('.modal-body');
+            
+            title.textContent = 'Add New Task';
+            body.innerHTML = `
+                <form id="task-form" onsubmit="return saveTask(event)">
+                    <div style="display: grid; gap: 20px;">
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #333;">
+                                Task Title *
+                            </label>
+                            <input type="text" 
+                                   name="title" 
+                                   required 
+                                   placeholder="Enter task title"
+                                   style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px;">
+                        </div>
+                        
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #333;">
+                                Description *
+                            </label>
+                            <textarea name="description" 
+                                      required 
+                                      rows="3"
+                                      placeholder="Enter task description"
+                                      style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px;"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #333;">
+                                Instructions *
+                            </label>
+                            <textarea name="instructions" 
+                                      required 
+                                      rows="4"
+                                      placeholder="Enter detailed instructions for users"
+                                      style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px;"></textarea>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div>
+                                <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #333;">
+                                    Reward Amount (৳) *
+                                </label>
+                                <input type="number" 
+                                       name="reward" 
+                                       required 
+                                       min="1"
+                                       value="3"
+                                       style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px;">
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #333;">
+                                    Duration (minutes) *
+                                </label>
+                                <input type="number" 
+                                       name="duration" 
+                                       required 
+                                       min="1"
+                                       value="5"
+                                       style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px;">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #333;">
+                                CPA Link *
+                            </label>
+                            <input type="url" 
+                                   name="link" 
+                                   required 
+                                   placeholder="https://example.com"
+                                   style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px;">
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div>
+                                <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #333;">
+                                    Category *
+                                </label>
+                                <select name="category" 
+                                        required
+                                        style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px;">
+                                    <option value="micro_job">Micro Job</option>
+                                    <option value="survey">Survey</option>
+                                    <option value="watch">Watch Video</option>
+                                    <option value="install">Install App</option>
+                                    <option value="signup">Sign Up</option>
+                                    <option value="download">Download App</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #333;">
+                                    Total Slots *
+                                </label>
+                                <input type="number" 
+                                       name="totalSlots" 
+                                       required 
+                                       min="1"
+                                       value="100"
+                                       style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px;">
+                            </div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px;">
+                            <button type="button" 
+                                    onclick="modal.classList.remove('show')"
+                                    style="padding: 15px; border: 2px solid #e0e0e0; border-radius: 8px; background: white; color: #333; font-weight: 600; cursor: pointer;">
+                                Cancel
+                            </button>
+                            <button type="submit" 
+                                    style="padding: 15px; border: none; border-radius: 8px; background: #2E8B57; color: white; font-weight: 600; cursor: pointer;">
+                                Save Task
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            `;
+            
+            modal.classList.add('show');
+        }
+        
+        async function saveTask(e) {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            
+            try {
+                const response = await fetch('/api/admin/tasks/add', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert('Task added successfully!');
+                    document.getElementById('task-modal').classList.remove('show');
+                    loadTasksData();
+                } else {
+                    alert('Failed to add task: ' + result.message);
+                }
+            } catch (error) {
+                alert('Error saving task. Please try again.');
+            }
+        }
+        
+        async function approveSubmission(submissionId) {
+            if (!confirm('Approve this submission and pay the reward?')) return;
+            
+            try {
+                const response = await fetch(`/api/admin/tasks/submissions/${submissionId}/approve`, {
+                    method: 'POST'
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert('Submission approved! Reward has been paid to user.');
+                    // Remove from pending list
+                    document.getElementById(`submission-${submissionId}`).remove();
+                    // Update stats
+                    loadTasksData();
+                } else {
+                    alert('Failed to approve: ' + result.message);
+                }
+            } catch (error) {
+                alert('Error approving submission. Please try again.');
+            }
+        }
+        
+        async function rejectSubmission(submissionId) {
+            const reason = prompt('Enter rejection reason:');
+            if (!reason) return;
+            
+            try {
+                const response = await fetch(`/api/admin/tasks/submissions/${submissionId}/reject`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ reason })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert('Submission rejected!');
+                    // Remove from pending list
+                    document.getElementById(`submission-${submissionId}`).remove();
+                    // Update stats
+                    loadTasksData();
+                } else {
+                    alert('Failed to reject: ' + result.message);
+                }
+            } catch (error) {
+                alert('Error rejecting submission. Please try again.');
+            }
+        }
+        
+        function viewSubmissionDetails(submissionId) {
+            const modal = document.getElementById('submission-modal');
+            const body = document.getElementById('submission-modal-body');
+            
+            const submission = pendingSubmissions.find(s => s.id == submissionId);
+            if (!submission) return;
+            
+            body.innerHTML = `
+                <div style="display: grid; gap: 25px;">
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                            <div style="font-size: 12px; color: #666; margin-bottom: 5px;">User</div>
+                            <div style="font-weight: 600; color: #333;">${submission.userName}</div>
+                            <div style="font-size: 13px; color: #666;">ID: ${submission.userId}</div>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                            <div style="font-size: 12px; color: #666; margin-bottom: 5px;">Task</div>
+                            <div style="font-weight: 600; color: #333;">${submission.taskTitle}</div>
+                            <div style="font-size: 13px; color: #666;">Reward: ৳${submission.reward}</div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                        <div style="font-size: 12px; color: #666; margin-bottom: 10px;">Submission Details</div>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                            <div>
+                                <div style="font-size: 11px; color: #666;">Submitted</div>
+                                <div style="font-weight: 500;">${new Date(submission.submittedAt).toLocaleString()}</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 11px; color: #666;">Status</div>
+                                <div><span class="task-status status-pending">Pending</span></div>
+                            </div>
+                            <div>
+                                <div style="font-size: 11px; color: #666;">Duration</div>
+                                <div style="font-weight: 500;">${submission.taskDuration || 'N/A'} minutes</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    ${submission.screenshot ? `
+                        <div>
+                            <div style="font-weight: 500; color: #333; margin-bottom: 15px;">Screenshot</div>
+                            <img src="${submission.screenshot}" 
+                                 alt="Screenshot" 
+                                 style="width: 100%; max-height: 400px; object-fit: contain; border-radius: 10px; border: 1px solid #e0e0e0;">
+                        </div>
+                    ` : ''}
+                    
+                    <div style="display: flex; gap: 15px; margin-top: 20px;">
+                        <button onclick="approveSubmission(${submissionId})" 
+                                style="flex: 1; padding: 15px; background: #2E8B57; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                            <i class="fas fa-check"></i> Approve
+                        </button>
+                        <button onclick="rejectSubmission(${submissionId})" 
+                                style="flex: 1; padding: 15px; background: #FF4757; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                            <i class="fas fa-times"></i> Reject
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.add('show');
+        }
+        
+        function viewScreenshot(url) {
+            window.open(url, '_blank');
+        }
+        
+        function editTask(taskId) {
+            alert('Edit task functionality coming soon! Task ID: ' + taskId);
+        }
+        
+        function deleteTask(taskId) {
+            if (!confirm('Are you sure you want to delete this task?')) return;
+            
+            // Implementation for delete task
+            console.log('Delete task:', taskId);
+            alert('Task deleted! (This is a demo)');
+        }
+        
+        function viewTask(taskId) {
+            // Implementation for view task details
+            console.log('View task:', taskId);
+        }
+        
+        function exportTasks() {
+            alert('Export functionality coming soon!');
+        }
+        
+        function refreshTasks() {
+            loadTasksData();
+        }
+        
+        // Utility functions
+        function formatCategory(category) {
+            const categories = {
+                'micro_job': 'Micro Job',
+                'survey': 'Survey',
+                'watch': 'Watch Video',
+                'install': 'Install App',
+                'signup': 'Sign Up',
+                'download': 'Download App'
+            };
+            return categories[category] || category;
+        }
+        
+        function calculatePercentage(part, total) {
+            if (!total) return 0;
+            return Math.round((part / total) * 100);
+        }
+        
+        function formatTime(timestamp) {
+            const date = new Date(timestamp);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMs / 3600000);
+            const diffDays = Math.floor(diffMs / 86400000);
+            
+            if (diffMins < 60) {
+                return `${diffMins}m ago`;
+            } else if (diffHours < 24) {
+                return `${diffHours}h ago`;
+            } else {
+                return `${diffDays}d ago`;
+            }
+        }
+        
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+        
+        function showError(message) {
+            // Show error toast
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #FF4757;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            `;
+            toast.innerHTML = `
+                <i class="fas fa-exclamation-circle"></i>
+                <span>${message}</span>
+                <button onclick="this.parentElement.remove()" style="
+                    background: none;
+                    border: none;
+                    color: white;
+                    cursor: pointer;
+                    margin-left: 10px;
+                ">&times;</button>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                if (toast.parentElement) {
+                    toast.remove();
+                }
+            }, 5000);
+        }
+        
+        // Expose functions globally
+        window.openAddTaskModal = openAddTaskModal;
+        window.approveSubmission = approveSubmission;
+        window.rejectSubmission = rejectSubmission;
+        window.viewSubmissionDetails = viewSubmissionDetails;
+        window.viewScreenshot = viewScreenshot;
+        window.editTask = editTask;
+        window.deleteTask = deleteTask;
+        window.viewTask = viewTask;
+        window.exportTasks = exportTasks;
+        window.refreshTasks = refreshTasks;
+    </script>
+</body>
+</html>
