@@ -1,0 +1,297 @@
+{
+  "transactions": [
+    {
+      "id": 1,
+      "user_id": 6561117046,
+      "type": "task_complete",
+      "amount": 3.00,
+      "description": "Task completed: Complete Simple Survey",
+      "reference_id": "TASK-001",
+      "status": "completed",
+      "wallet": "main",
+      "balance_before": 0.00,
+      "balance_after": 3.00,
+      "created_at": "2024-01-15T11:00:00.000Z",
+      "updated_at": "2024-01-15T11:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "user_id": 6561117046,
+      "type": "task_complete",
+      "amount": 2.00,
+      "description": "Task completed: Watch YouTube Video",
+      "reference_id": "TASK-002",
+      "status": "completed",
+      "wallet": "main",
+      "balance_before": 3.00,
+      "balance_after": 5.00,
+      "created_at": "2024-01-15T14:30:00.000Z",
+      "updated_at": "2024-01-15T14:30:00.000Z"
+    },
+    {
+      "id": 3,
+      "user_id": 6561117046,
+      "type": "referral_bonus",
+      "amount": 5.00,
+      "description": "Referral bonus from user: testuser",
+      "reference_id": "REF-001",
+      "status": "completed",
+      "wallet": "main",
+      "balance_before": 5.00,
+      "balance_after": 10.00,
+      "created_at": "2024-01-18T14:25:00.000Z",
+      "updated_at": "2024-01-18T14:25:00.000Z"
+    },
+    {
+      "id": 4,
+      "user_id": 6561117046,
+      "type": "wallet_convert",
+      "amount": 50.00,
+      "description": "Converted from Main to Cash Wallet",
+      "reference_id": "CONVERT-001",
+      "status": "completed",
+      "wallet": "cash",
+      "balance_before": 0.00,
+      "balance_after": 50.00,
+      "created_at": "2024-01-19T11:00:00.000Z",
+      "updated_at": "2024-01-19T11:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "user_id": 1234567890,
+      "type": "task_complete",
+      "amount": 3.00,
+      "description": "Task completed: Complete Simple Survey",
+      "reference_id": "TASK-003",
+      "status": "completed",
+      "wallet": "main",
+      "balance_before": 0.00,
+      "balance_after": 3.00,
+      "created_at": "2024-01-18T15:00:00.000Z",
+      "updated_at": "2024-01-18T15:00:00.000Z"
+    },
+    {
+      "id": 6,
+      "user_id": 1234567890,
+      "type": "referral_bonus",
+      "amount": 5.00,
+      "description": "Referral bonus from user: newuser_01",
+      "reference_id": "REF-002",
+      "status": "pending",
+      "wallet": "main",
+      "balance_before": 3.00,
+      "balance_after": 8.00,
+      "created_at": "2024-01-19T16:46:00.000Z",
+      "updated_at": "2024-01-19T16:46:00.000Z"
+    },
+    {
+      "id": 7,
+      "user_id": 6561117046,
+      "type": "code_purchase",
+      "amount": -1000.00,
+      "description": "Purchased F Code: Premium F Code",
+      "reference_id": "CODE-001",
+      "status": "completed",
+      "wallet": "main",
+      "balance_before": 150.00,
+      "balance_after": 50.00,
+      "created_at": "2024-01-19T10:00:00.000Z",
+      "updated_at": "2024-01-19T10:00:00.000Z"
+    },
+    {
+      "id": 8,
+      "user_id": 1234567890,
+      "type": "code_purchase",
+      "amount": -500.00,
+      "description": "Purchased GST Code: Premium GST Code 2024",
+      "reference_id": "CODE-002",
+      "status": "completed",
+      "wallet": "main",
+      "balance_before": 30.00,
+      "balance_after": -470.00,
+      "created_at": "2024-01-18T11:00:00.000Z",
+      "updated_at": "2024-01-18T11:00:00.000Z"
+    }
+  ],
+  "withdrawals": [
+    {
+      "id": 1,
+      "user_id": 6561117046,
+      "amount": 100.00,
+      "charge": 20.00,
+      "net_amount": 80.00,
+      "method": "bkash",
+      "account_number": "01XXXXXXXXX",
+      "account_type": "personal",
+      "account_name": "ᴺꪎᵗ.M i z u メ",
+      "status": "pending",
+      "is_first_withdraw": true,
+      "requested_at": "2024-01-20T10:00:00.000Z",
+      "processed_at": null,
+      "processed_by": null,
+      "transaction_id": null,
+      "notes": null,
+      "admin_notes": null,
+      "created_at": "2024-01-20T10:00:00.000Z",
+      "updated_at": "2024-01-20T10:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "user_id": 1234567890,
+      "amount": 300.00,
+      "charge": 30.00,
+      "net_amount": 270.00,
+      "method": "nagad",
+      "account_number": "01YYYYYYYYY",
+      "account_type": "agent",
+      "account_name": "Test User",
+      "status": "approved",
+      "is_first_withdraw": false,
+      "requested_at": "2024-01-19T14:00:00.000Z",
+      "processed_at": "2024-01-19T15:00:00.000Z",
+      "processed_by": 6561117046,
+      "transaction_id": "TX123456789",
+      "notes": "Withdrawal processed successfully",
+      "admin_notes": "User verified, payment sent",
+      "created_at": "2024-01-19T14:00:00.000Z",
+      "updated_at": "2024-01-19T15:00:00.000Z"
+    }
+  ],
+  "conversions": [
+    {
+      "id": 1,
+      "user_id": 6561117046,
+      "from_wallet": "main",
+      "to_wallet": "cash",
+      "amount": 50.00,
+      "fee": 0.00,
+      "net_amount": 50.00,
+      "status": "completed",
+      "created_at": "2024-01-19T11:00:00.000Z",
+      "updated_at": "2024-01-19T11:00:00.000Z"
+    }
+  ],
+  "system_settings": {
+    "withdraw_charges": {
+      "first_withdraw_percentage": 10,
+      "first_withdraw_fixed": 10,
+      "regular_withdraw_percentage": 10,
+      "regular_withdraw_fixed": 0,
+      "min_withdraw_amount": 100,
+      "max_withdraw_amount": 10000,
+      "daily_withdraw_limit": 5000
+    },
+    "referral_bonus": {
+      "amount": 5.00,
+      "min_withdraw_for_bonus": 100,
+      "max_referrals_per_day": 10,
+      "bonus_validity_days": 30
+    },
+    "wallet_settings": {
+      "min_convert_amount": 100,
+      "conversion_fee_percentage": 0,
+      "auto_convert_enabled": false,
+      "min_main_wallet_balance": 0,
+      "min_cash_wallet_balance": 100
+    },
+    "task_settings": {
+      "max_tasks_per_day": 20,
+      "min_task_reward": 1,
+      "max_task_reward": 100,
+      "task_review_hours": 24,
+      "auto_approve_tasks": false
+    },
+    "payment_methods": [
+      {
+        "name": "bKash",
+        "code": "bkash",
+        "status": "active",
+        "min_amount": 100,
+        "max_amount": 10000,
+        "processing_time": "1-24 hours"
+      },
+      {
+        "name": "Nagad",
+        "code": "nagad",
+        "status": "active",
+        "min_amount": 100,
+        "max_amount": 10000,
+        "processing_time": "1-24 hours"
+      },
+      {
+        "name": "Rocket",
+        "code": "rocket",
+        "status": "active",
+        "min_amount": 100,
+        "max_amount": 10000,
+        "processing_time": "1-24 hours"
+      }
+    ],
+    "channels": {
+      "required_channels": [
+        {
+          "username": "@income460tu",
+          "name": "Income 460",
+          "link": "https://t.me/income460tu",
+          "is_required": true
+        },
+        {
+          "username": "@dvt1236",
+          "name": "Digital Vision",
+          "link": "https://t.me/dvt1236",
+          "is_required": true
+        }
+      ],
+      "payment_channel": {
+        "username": "@income460tu_payment",
+        "name": "Payment Proofs",
+        "link": "https://t.me/income460tu_payment",
+        "is_required": false
+      }
+    },
+    "admin_settings": {
+      "super_admin": {
+        "id": 6561117046,
+        "username": "@Miju132",
+        "name": "ᴺꪎᵗ.M i z u メ"
+      },
+      "support_contacts": [
+        {
+          "type": "telegram",
+          "username": "@Miju132",
+          "name": "Main Admin"
+        },
+        {
+          "type": "whatsapp",
+          "number": "+8801XXXXXXXXX",
+          "name": "WhatsApp Support"
+        },
+        {
+          "type": "phone",
+          "number": "+8801XXXXXXXXX",
+          "name": "Phone Support"
+        }
+      ]
+    },
+    "system_info": {
+      "version": "1.0.0",
+      "last_updated": "2024-01-20T00:00:00.000Z",
+      "maintenance_mode": false,
+      "registration_open": true,
+      "withdrawals_open": true,
+      "tasks_available": true
+    }
+  },
+  "statistics": {
+    "total_transactions": 8,
+    "total_deposits": 18.00,
+    "total_withdrawals": 400.00,
+    "total_conversions": 50.00,
+    "pending_withdrawals": 100.00,
+    "approved_withdrawals": 300.00,
+    "rejected_withdrawals": 0.00,
+    "platform_revenue": 50.00,
+    "today_transactions": 2,
+    "today_withdrawals": 1
+  }
+}
