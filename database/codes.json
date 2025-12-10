@@ -1,0 +1,309 @@
+{
+  "gst_codes": [
+    {
+      "id": 1,
+      "code": "GST-PREMIUM-2024",
+      "name": "Premium GST Code 2024",
+      "description": "High quality GST code for premium accounts",
+      "price": 500.00,
+      "stock": 10,
+      "sold": 2,
+      "status": "available",
+      "category": "gst",
+      "instructions": "দয়া করে GST খুলবেন এই কুড দিয়ে — CODE [GST-PREMIUM-2024]",
+      "captions": {
+        "bangla": "দয়া করে GST খুলবেন এই কুড দিয়ে — CODE [GST-PREMIUM-2024]",
+        "english": "Please open GST with this code — CODE [GST-PREMIUM-2024]"
+      },
+      "created_by": 6561117046,
+      "created_at": "2024-01-15T00:00:00.000Z",
+      "updated_at": "2024-01-18T12:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "code": "GST-BASIC-2024",
+      "name": "Basic GST Code",
+      "description": "Standard GST code for regular accounts",
+      "price": 300.00,
+      "stock": 25,
+      "sold": 5,
+      "status": "available",
+      "category": "gst",
+      "instructions": "দয়া করে GST খুলবেন এই কুড দিয়ে — CODE [GST-BASIC-2024]",
+      "captions": {
+        "bangla": "দয়া করে GST খুলবেন এই কুড দিয়ে — CODE [GST-BASIC-2024]",
+        "english": "Please open GST with this code — CODE [GST-BASIC-2024]"
+      },
+      "created_by": 6561117046,
+      "created_at": "2024-01-16T00:00:00.000Z",
+      "updated_at": "2024-01-19T10:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "code": "GST-ULTRA-2024",
+      "name": "Ultra GST Code",
+      "description": "Ultra premium GST code with special features",
+      "price": 1000.00,
+      "stock": 5,
+      "sold": 0,
+      "status": "available",
+      "category": "gst",
+      "instructions": "দয়া করে GST খুলবেন এই কুড দিয়ে — CODE [GST-ULTRA-2024]",
+      "captions": {
+        "bangla": "দয়া করে GST খুলবেন এই কুড দিয়ে — CODE [GST-ULTRA-2024]",
+        "english": "Please open GST with this code — CODE [GST-ULTRA-2024]"
+      },
+      "created_by": 6561117046,
+      "created_at": "2024-01-17T00:00:00.000Z",
+      "updated_at": "2024-01-17T00:00:00.000Z"
+    }
+  ],
+  "f_codes": [
+    {
+      "id": 1,
+      "uid": "F123456789",
+      "address": "123 Main Street, Dhaka City",
+      "codep": "CP12345",
+      "code2": "2CODE5678",
+      "name": "Premium F Code",
+      "description": "Premium F code with full access",
+      "price": 1000.00,
+      "stock": 5,
+      "sold": 1,
+      "status": "available",
+      "category": "f_code",
+      "instructions": "দয়া করে F খুলবেন প্রদত্ত তথ্য দিয়ে।",
+      "captions": {
+        "bangla": "দয়া করে F খুলবেন প্রদত্ত তথ্য দিয়ে।\nUID: [F123456789]\nAddress: [123 Main Street, Dhaka City]\nCodep: [CP12345]\n2Code: [2CODE5678]",
+        "english": "Please open F with given information.\nUID: [F123456789]\nAddress: [123 Main Street, Dhaka City]\nCodep: [CP12345]\n2Code: [2CODE5678]"
+      },
+      "created_by": 6561117046,
+      "created_at": "2024-01-15T00:00:00.000Z",
+      "updated_at": "2024-01-18T15:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "uid": "F987654321",
+      "address": "456 Park Avenue, Chittagong",
+      "codep": "CP67890",
+      "code2": "2CODE1234",
+      "name": "Standard F Code",
+      "description": "Standard F code with basic features",
+      "price": 700.00,
+      "stock": 10,
+      "sold": 3,
+      "status": "available",
+      "category": "f_code",
+      "instructions": "দয়া করে F খুলবেন প্রদত্ত তথ্য দিয়ে।",
+      "captions": {
+        "bangla": "দয়া করে F খুলবেন প্রদত্ত তথ্য দিয়ে।\nUID: [F987654321]\nAddress: [456 Park Avenue, Chittagong]\nCodep: [CP67890]\n2Code: [2CODE1234]",
+        "english": "Please open F with given information.\nUID: [F987654321]\nAddress: [456 Park Avenue, Chittagong]\nCodep: [CP67890]\n2Code: [2CODE1234]"
+      },
+      "created_by": 6561117046,
+      "created_at": "2024-01-16T00:00:00.000Z",
+      "updated_at": "2024-01-19T11:00:00.000Z"
+    }
+  ],
+  "insite_codes": [
+    {
+      "id": 1,
+      "uid": "INSITE123456",
+      "email": "premium@example.com",
+      "password": "Pass@1234",
+      "name": "Premium Insite Account",
+      "description": "Premium Facebook Insite account with full access",
+      "price": 800.00,
+      "stock": 8,
+      "sold": 2,
+      "status": "available",
+      "category": "insite",
+      "instructions": "Use the provided credentials to access the account",
+      "captions": {
+        "bangla": "ইন্সাইট অ্যাকাউন্ট ক্রয় করুন\nUID: [INSITE123456]\nEmail: [premium@example.com]\nPassword: [Pass@1234]",
+        "english": "Buy Insite Account\nUID: [INSITE123456]\nEmail: [premium@example.com]\nPassword: [Pass@1234]"
+      },
+      "created_by": 6561117046,
+      "created_at": "2024-01-17T00:00:00.000Z",
+      "updated_at": "2024-01-19T12:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "uid": "INSITE789012",
+      "email": "business@example.com",
+      "password": "Business@2024",
+      "name": "Business Insite Account",
+      "description": "Business Facebook Insite account with ad access",
+      "price": 1200.00,
+      "stock": 3,
+      "sold": 1,
+      "status": "available",
+      "category": "insite",
+      "instructions": "Use the provided credentials to access business account",
+      "captions": {
+        "bangla": "বিজনেস ইন্সাইট অ্যাকাউন্ট\nUID: [INSITE789012]\nEmail: [business@example.com]\nPassword: [Business@2024]",
+        "english": "Business Insite Account\nUID: [INSITE789012]\nEmail: [business@example.com]\nPassword: [Business@2024]"
+      },
+      "created_by": 6561117046,
+      "created_at": "2024-01-18T00:00:00.000Z",
+      "updated_at": "2024-01-19T09:00:00.000Z"
+    }
+  ],
+  "diamond_packages": [
+    {
+      "id": 1,
+      "diamonds": 100,
+      "price": 90.00,
+      "description": "100 Diamonds Package",
+      "contact_number": "+8801XXXXXXXXX",
+      "contact_name": "Admin Support",
+      "status": "active",
+      "order": 1,
+      "created_at": "2024-01-15T00:00:00.000Z",
+      "updated_at": "2024-01-15T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "diamonds": 200,
+      "price": 170.00,
+      "description": "200 Diamonds Package",
+      "contact_number": "+8801XXXXXXXXX",
+      "contact_name": "Admin Support",
+      "status": "active",
+      "order": 2,
+      "created_at": "2024-01-15T00:00:00.000Z",
+      "updated_at": "2024-01-15T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "diamonds": 500,
+      "price": 400.00,
+      "description": "500 Diamonds Package",
+      "contact_number": "+8801XXXXXXXXX",
+      "contact_name": "Admin Support",
+      "status": "active",
+      "order": 3,
+      "created_at": "2024-01-16T00:00:00.000Z",
+      "updated_at": "2024-01-16T00:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "diamonds": 1000,
+      "price": 750.00,
+      "description": "1000 Diamonds Package",
+      "contact_number": "+8801XXXXXXXXX",
+      "contact_name": "Admin Support",
+      "status": "active",
+      "order": 4,
+      "created_at": "2024-01-17T00:00:00.000Z",
+      "updated_at": "2024-01-17T00:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "diamonds": 5000,
+      "price": 3500.00,
+      "description": "5000 Diamonds Package",
+      "contact_number": "+8801XXXXXXXXX",
+      "contact_name": "Admin Support",
+      "status": "active",
+      "order": 5,
+      "created_at": "2024-01-18T00:00:00.000Z",
+      "updated_at": "2024-01-18T00:00:00.000Z"
+    }
+  ],
+  "shop_links": [
+    {
+      "id": 1,
+      "name": "Digital Vision Shop",
+      "url": "https://digitalvision-shop.com",
+      "description": "Our official online shop for digital products",
+      "status": "active",
+      "order": 1,
+      "created_at": "2024-01-15T00:00:00.000Z",
+      "updated_at": "2024-01-15T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "name": "Tech Gadgets Store",
+      "url": "https://techgadgets.example.com",
+      "description": "Premium tech gadgets and accessories",
+      "status": "active",
+      "order": 2,
+      "created_at": "2024-01-16T00:00:00.000Z",
+      "updated_at": "2024-01-16T00:00:00.000Z"
+    }
+  ],
+  "contact_info": {
+    "hack_recover": {
+      "admin_name": "ᴺꪎᵗ.M i z u メ",
+      "username": "@Miju132",
+      "phone_number": "+8801XXXXXXXXX",
+      "whatsapp_number": "+8801XXXXXXXXX",
+      "message": "আইডি রিকভার বা ব্যান রিমুভ করতে নিচের এডমিনের সাথে যোগাযোগ করুন।",
+      "instructions": "If your account is hacked or banned, contact our admin for recovery services.",
+      "created_at": "2024-01-15T00:00:00.000Z",
+      "updated_at": "2024-01-19T14:00:00.000Z"
+    },
+    "getlike": {
+      "link": "https://getlike.io/r/digitalvision",
+      "admin_info": "@Miju132",
+      "contact_number": "+8801XXXXXXXXX",
+      "description": "Get likes, followers, and views for social media",
+      "created_at": "2024-01-15T00:00:00.000Z",
+      "updated_at": "2024-01-19T14:00:00.000Z"
+    },
+    "niva_coin": {
+      "admin_info": "@Miju132",
+      "contact_number": "+8801XXXXXXXXX",
+      "whatsapp_number": "+8801XXXXXXXXX",
+      "description": "Buy and sell Niva coins",
+      "created_at": "2024-01-15T00:00:00.000Z",
+      "updated_at": "2024-01-19T14:00:00.000Z"
+    },
+    "tiktok": {
+      "admin_info": "@Miju132",
+      "contact_number": "+8801XXXXXXXXX",
+      "whatsapp_number": "+8801XXXXXXXXX",
+      "description": "TikTok services: followers, likes, views",
+      "created_at": "2024-01-15T00:00:00.000Z",
+      "updated_at": "2024-01-19T14:00:00.000Z"
+    }
+  },
+  "code_sales": [
+    {
+      "id": 1,
+      "user_id": 1234567890,
+      "code_type": "gst",
+      "code_id": 1,
+      "code": "GST-PREMIUM-2024",
+      "price": 500.00,
+      "status": "completed",
+      "purchased_at": "2024-01-18T11:00:00.000Z",
+      "created_at": "2024-01-18T11:00:00.000Z",
+      "updated_at": "2024-01-18T11:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "user_id": 6561117046,
+      "code_type": "f_code",
+      "code_id": 1,
+      "code": "F123456789",
+      "price": 1000.00,
+      "status": "completed",
+      "purchased_at": "2024-01-19T10:00:00.000Z",
+      "created_at": "2024-01-19T10:00:00.000Z",
+      "updated_at": "2024-01-19T10:00:00.000Z"
+    }
+  ],
+  "statistics": {
+    "total_gst_codes": 3,
+    "total_f_codes": 2,
+    "total_insite_codes": 2,
+    "total_diamond_packages": 5,
+    "total_shop_links": 2,
+    "total_sales": 2,
+    "total_revenue": 1500.00,
+    "gst_sold": 2,
+    "f_codes_sold": 1,
+    "insite_sold": 2
+  }
+}
