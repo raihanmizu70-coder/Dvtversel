@@ -1,0 +1,41 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "backend/index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "frontend/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/index.js"
+    },
+    {
+      "src": "/admin/(.*)",
+      "dest": "frontend/admin-dashboard/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "frontend/mini-app/index.html"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "TELEGRAM_BOT_TOKEN": "@telegram_bot_token",
+    "MONGODB_URI": "@mongodb_uri",
+    "JWT_SECRET": "@jwt_secret",
+    "GOOGLE_SHEETS_CLIENT_EMAIL": "@google_sheets_client_email",
+    "GOOGLE_SHEETS_PRIVATE_KEY": "@google_sheets_private_key"
+  },
+  "regions": ["sin1"],
+  "functions": {
+    "backend/index.js": {
+      "maxDuration": 10
+    }
+  }
+}
